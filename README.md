@@ -18,9 +18,7 @@ Let's say that length of the total string = `N` and number of words = `W`
 Time complexity = `O(W) + O(W)`
 Space complexity = `O(W) + O(L)` where L = number of lines 
 
-My first approach was quite similar to the current one but instead of using `FormattedLine` struct which keeps track of indices, I was using temporary strings to format. Copying strings multiple times added complexity and made it `O(W^2)`
-
-The optimised approach uses `FormattedLine`. In the first iteration of words, For every formatted line, we keep track of `start_index`, `end_index`, `left_padding`, `right_padding` and with that information, during the second iteration, we construct the new formatted text
+The approach uses `FormattedLine`. In the first iteration of words, For every formatted line, we keep track of `start_index`, `end_index`, `left_padding`, `right_padding` and with that information, during the second iteration, we construct the new formatted text
 
 To measure some numbers, I created a benchmark tool and here are some numbers
 
