@@ -43,16 +43,16 @@ TEST_CASE("right-align-text") {
 TEST_CASE("center-align-text") {
     formatter::Formatter text_formatter;
 
-    std::string line = "This test should be center aligned";
+    std::string line = "this test should be center aligned";
     std::string aligned_text = text_formatter.AlignText(line, 10, "CENTER_ALIGN");
-    std::string expected_text = "This test \n"
+    std::string expected_text = "this test \n"
                                 "should be \n"
                                 "  center  \n"
                                 " aligned  ";
     REQUIRE(aligned_text == expected_text);
 
     aligned_text = text_formatter.AlignText(line, 20, "CENTER_ALIGN");
-    expected_text = "This test should be \n"
+    expected_text = "this test should be \n"
                     "   center aligned   ";
     REQUIRE(aligned_text == expected_text);
 
@@ -62,6 +62,17 @@ TEST_CASE("center-align-text") {
         " world hello world  ";
     REQUIRE(aligned_text == expected_text);
 }
+
+TEST_CASE("justify-text") {
+    formatter::Formatter text_formatter;
+    std::string line = "This is an example of text justification.";
+    std::string aligned_text = text_formatter.AlignText(line, 16, "JUSTIFY");
+    std::string expected_text = "This    is    an\n"
+                                "example  of text\n"
+                                "justification.";
+    REQUIRE(aligned_text == expected_text);
+}
+
 
 TEST_CASE("empty-text") {
     formatter::Formatter text_formatter;

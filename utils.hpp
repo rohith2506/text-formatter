@@ -18,13 +18,13 @@ static std::vector<std::string> SplitString(const std::string& str) {
     return words;
 }
 
-static bool IsAsciiLetterOrSpace(char ch) {
-    return (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || (ch >= '0' && ch <= '9') || (ch == ' ');
+static bool IsAscii(char ch) {
+	return (int)ch >= 0 && (int)ch <= 255;
 }
 
 static bool IsValid(const std::string& input) {
     for (auto ch : input) {
-        if (!IsAsciiLetterOrSpace(ch))
+        if (!IsAscii(ch))
             return false;
     }
     return true;
