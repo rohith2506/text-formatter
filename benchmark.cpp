@@ -8,7 +8,7 @@
 constexpr size_t MAX_WORD_SIZE = 100;
 constexpr size_t COLUMN_WIDTH = 104;
 const std::vector<int> NUM_WORDS = {1000, 10000, 100000, 1000000};
-const std::vector<std::string> ALIGN_MODES = {"LEFT_ALIGN", "RIGHT_ALIGN", "CENTER_ALIGN"};
+const std::vector<std::string> ALIGN_MODES = {"LEFT_ALIGN", "RIGHT_ALIGN", "CENTER_ALIGN", "JUSTIFY"};
 
 std::string generate_text(int length) {
     std::string result;
@@ -33,7 +33,7 @@ void run_benchmark() {
 
     for (size_t index = 0; index < NUM_WORDS.size(); index++) {
         std::cout << "Running benchmark: #" << index << std::endl;
-        auto align_mode = ALIGN_MODES[(rand() % ALIGN_MODES.size()) + 1];
+        auto align_mode = ALIGN_MODES[(rand() % ALIGN_MODES.size())];
         std::cout << "TOTAL WORDS = " << NUM_WORDS[index] << "\tCOLUMN_WIDTH = " << COLUMN_WIDTH << "\tALIGN_MODE = " << align_mode << std::endl;
 
         std::string text = generate_text(NUM_WORDS[index]);

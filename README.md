@@ -12,16 +12,6 @@ Format text according to the given align mode written in C++
 For running the binary, `./formatter` and running the benchmark, `./benchmark`
 
 
-### Misc
-
-#### Correctness
-I have tested the logic with various edge cases and also compared the output with google docs with alignment running over there and comparing to the program output
-
-#### Input validation / Error handling
-For ASCII, I also included numerics because they can be part of words ( eg. 1500s ) but will print an error to STDERR when we encounter non-alphanumeric or spaces. Same goes with words that are longer than column width
-
-Note: Some confusion regarding ASCII which generally includes all chars from 0 - 255 but in the description, it was mentioned lowercase ASCII and uppercase ASCII. So I assumed that we just only alphanumerics. Anyways, if we want to change the condition, it's just one line change in `utils.hpp`
-
 #### Efficiency
 Let's say that length of the total string = `N` and number of words = `W`
 
@@ -36,22 +26,15 @@ To measure some numbers, I created a benchmark tool and here are some numbers
 
 ```
 Running benchmark: #0
-TOTAL WORDS = 1000	COLUMN_WIDTH = 104	ALIGN_MODE = CENTER_ALIGN
-Time taken: 869 us
+TOTAL WORDS = 1000	COLUMN_WIDTH = 104	ALIGN_MODE = JUSTIFY
+Time taken: 1277 us
 Running benchmark: #1
-TOTAL WORDS = 10000	COLUMN_WIDTH = 104	ALIGN_MODE = CENTER_ALIGN
-Time taken: 6027 us
+TOTAL WORDS = 10000	COLUMN_WIDTH = 104	ALIGN_MODE = LEFT_ALIGN
+Time taken: 6140 us
 Running benchmark: #2
-TOTAL WORDS = 100000	COLUMN_WIDTH = 104	ALIGN_MODE = CENTER_ALIGN
-Time taken: 57974 us
+TOTAL WORDS = 100000	COLUMN_WIDTH = 104	ALIGN_MODE = JUSTIFY
+Time taken: 83124 us
 Running benchmark: #3
-TOTAL WORDS = 1000000	COLUMN_WIDTH = 104	ALIGN_MODE = RIGHT_ALIGN
-Time taken: 570537 us
+TOTAL WORDS = 1000000	COLUMN_WIDTH = 104	ALIGN_MODE = CENTER_ALIGN
+Time taken: 612535 us
 ```
-
-#### Extensibility
-All the padding logic is encapsulated under one under lambda function `construct`. If we want to add new align modes, we just need to add another `switch` case
-
-
-#### Test Coverage and Code quality
-No unused imports, confusing statements, sane variable namings were used. And to validate the correctness, test coverage was essential

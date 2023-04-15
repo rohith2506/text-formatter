@@ -57,7 +57,7 @@ std::string Formatter::AlignText(const std::string& text, size_t column_width, c
 			};
 			case Align::JUSTIFY:
 			{
-				auto padding_length = std::max(0ul, column_width - current_line_length + 1);
+				int64_t padding_length = std::max(0ul, column_width - current_line_length + 1);
 				auto num_words = (end_index - start_index - 1);
 				if (!num_words || end_index == words.size()) {
 					lines.emplace_back(FormattedLine{start_index, end_index, 0, 0, {}});	
@@ -66,7 +66,7 @@ std::string Formatter::AlignText(const std::string& text, size_t column_width, c
 					auto padding_distribution =  (size_t)ceil(padding_length * 1.0 / (end_index - start_index - 1));	
 					std::deque<size_t> extra_spaces;
 					while (padding_length > 0) {
-						extra_spaces.push_back(std::min(padding_length, padding_distribution));
+						extra_spaces.push_back(std::min(padding_length, (int64_t)padding_distribution));
 						padding_length -= padding_distribution;
 					}
 					lines.emplace_back(FormattedLine{start_index, end_index, 0, 0, extra_spaces});
