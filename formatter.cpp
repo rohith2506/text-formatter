@@ -55,24 +55,24 @@ std::string Formatter::AlignText(const std::string& text, size_t column_width, c
                 lines.emplace_back(FormattedLine{start_index, end_index, left_padding_length, right_padding_length, {}});
 				break;
 			};
-			case Align::JUSTIFY:
-			{
-				int64_t padding_length = std::max(0ul, column_width - current_line_length + 1);
-				auto num_words = (end_index - start_index - 1);
-				if (!num_words || end_index == words.size()) {
-					lines.emplace_back(FormattedLine{start_index, end_index, 0, 0, {}});	
-				}
-				else {
-					auto padding_distribution =  (size_t)ceil(padding_length * 1.0 / (end_index - start_index - 1));	
-					std::deque<size_t> extra_spaces;
-					while (padding_length > 0) {
-						extra_spaces.push_back(std::min(padding_length, (int64_t)padding_distribution));
-						padding_length -= padding_distribution;
-					}
-					lines.emplace_back(FormattedLine{start_index, end_index, 0, 0, extra_spaces});
-				}
-				break;	
-			}
+            case Align::JUSTIFY:
+            {
+                int64_t padding_length = std::max(0ul, column_width - current_line_length + 1);
+                auto num_words = (end_index - start_index - 1);
+                if (!num_words || end_index == words.size()) {
+                    lines.emplace_back(FormattedLine{start_index, end_index, 0, 0, {}});	
+                }
+                else {
+                    auto padding_distribution =  (size_t)ceil(padding_length * 1.0 / (end_index - start_index - 1));	
+                    std::deque<size_t> extra_spaces;
+                    while (padding_length > 0) {
+                        extra_spaces.push_back(std::min(padding_length, (int64_t)padding_distribution));
+                        padding_length -= padding_distribution;
+                    }
+                    lines.emplace_back(FormattedLine{start_index, end_index, 0, 0, extra_spaces});
+                }
+                break;	
+            }
         }
     };
 
@@ -103,10 +103,10 @@ std::string Formatter::AlignText(const std::string& text, size_t column_width, c
         for (auto index = start_index; index < end_index; index++) {
             result += words[index];
             result += ' ';
-			if (extra_spaces.size()) {
-				result += std::string(extra_spaces.front(), ' ');
-				extra_spaces.pop_front();
-			}
+            if (extra_spaces.size()) {
+                result += std::string(extra_spaces.front(), ' ');
+                extra_spaces.pop_front();
+            }
         }
         result.pop_back();
         result += std::string(right_padding, ' ');

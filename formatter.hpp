@@ -24,11 +24,11 @@ struct FormattedLine {
 	FormattedLine() = delete;
 
 	FormattedLine(
-			size_t start_index, 
-			size_t end_index, 
-			size_t left_padding, 
-			size_t right_padding, 
-			std::deque<size_t> extra_spaces
+		size_t start_index, 
+		size_t end_index, 
+		size_t left_padding, 
+		size_t right_padding, 
+		std::deque<size_t> extra_spaces
 	):
 		start_index(start_index),
 		end_index(end_index),
