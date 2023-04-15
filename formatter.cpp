@@ -13,9 +13,9 @@ Align Formatter::GetAlignMode(const std::string& align_mode) {
         return Align::RIGHT_ALIGN;
     } else if (align_mode == "CENTER_ALIGN") {
         return Align::CENTER_ALIGN;
-	} else if (align_mode == "JUSTIFY") {
-		return Align::JUSTIFY;
-	} else {
+    } else if (align_mode == "JUSTIFY") {
+        return Align::JUSTIFY;
+    } else {
         throw std::invalid_argument("Align mode \"" + align_mode + "\" is not currently supported");
     }
 }
@@ -53,8 +53,8 @@ std::string Formatter::AlignText(const std::string& text, size_t column_width, c
                 auto left_padding_length = padding_length / 2;
                 auto right_padding_length = padding_length - left_padding_length;
                 lines.emplace_back(FormattedLine{start_index, end_index, left_padding_length, right_padding_length, {}});
-				break;
-			};
+                break;
+            };
             case Align::JUSTIFY:
             {
                 int64_t padding_length = std::max(0ul, column_width - current_line_length + 1);
